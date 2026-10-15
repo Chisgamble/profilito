@@ -54,88 +54,119 @@ const REPO_TOPICS_MAP = {
   "profilito": ["portfolio", "bento-grid", "github-api", "glassmorphism"]
 };
 
-// Fallback user data in case of GitHub API rate limits
+// Fallback user data for Trần Khôn Chí (Chisgamble) in case of GitHub API rate limits
 const FALLBACK_PROFILE = {
-  login: "octocat",
-  name: "Alex Devlin",
-  avatar_url: "https://avatars.githubusercontent.com/u/583231?v=4",
-  html_url: "https://github.com/octocat",
-  bio: "Full-Stack Software Engineer building delightful web applications, resilient backend microservices, and high-performance open-source libraries.",
-  location: "San Francisco, CA / Remote",
-  company: "Open Source Collective",
-  blog: "https://github.blog",
-  public_repos: 42,
-  followers: 1240,
-  following: 86
+  login: "Chisgamble",
+  name: "Trần Khôn Chí",
+  avatar_url: "https://avatars.githubusercontent.com/u/147268737?v=4",
+  html_url: "https://github.com/Chisgamble",
+  bio: "Full-Stack Engineer specialized in TypeScript, Spring Boot microservices, React, and modern web applications. Passionate about building robust systems and scalable digital platforms.",
+  location: "Vietnam / Remote",
+  company: "Independent & Open Source",
+  blog: "https://github.com/Chisgamble",
+  public_repos: 11,
+  followers: 0,
+  following: 0
 };
 
 const FALLBACK_REPOS = [
   {
-    name: "hyper-speed-cache",
-    html_url: "https://github.com",
-    description: "Ultra-fast in-memory caching engine written in TypeScript with Redis-compatible protocol and LRU eviction.",
-    language: "TypeScript",
-    stargazers_count: 842,
-    forks_count: 124,
-    updated_at: new Date(Date.now() - 86400000 * 2).toISOString(),
-    topics: ["cache", "typescript", "performance", "redis"]
-  },
-  {
-    name: "react-flow-bento",
-    html_url: "https://github.com",
-    description: "Modern Bento Grid component library for React with dark glassmorphism, fluid physics, and customizable widgets.",
+    name: "bidzone",
+    html_url: "https://github.com/Chisgamble/bidzone",
+    homepage: "https://bidzone-nu.vercel.app",
+    description: "Real-time online auction & bidding web platform with live countdown and responsive interface. Deployed live on Vercel.",
     language: "JavaScript",
-    stargazers_count: 512,
-    forks_count: 67,
-    updated_at: new Date(Date.now() - 86400000 * 5).toISOString(),
-    topics: ["react", "bento-grid", "glassmorphism", "ui-kit"]
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-01-06T15:55:45Z",
+    topics: ["javascript", "auction", "vercel", "web-app"]
   },
   {
-    name: "neural-embed-service",
-    html_url: "https://github.com",
-    description: "Distributed microservice for high-throughput vector embedding generation and semantic clustering.",
-    language: "Python",
-    stargazers_count: 389,
-    forks_count: 45,
-    updated_at: new Date(Date.now() - 86400000 * 12).toISOString(),
-    topics: ["python", "ai", "vector-db", "microservices"]
+    name: "TroUyTin",
+    html_url: "https://github.com/Chisgamble/TroUyTin",
+    description: "Trusted boarding house and rental accommodation platform built with TypeScript, featuring room listings and tenant management.",
+    language: "TypeScript",
+    stargazers_count: 0,
+    forks_count: 1,
+    updated_at: "2026-08-06T09:05:59Z",
+    topics: ["typescript", "rental", "accommodation", "fullstack"]
   },
   {
-    name: "cloud-sentinel-cli",
-    html_url: "https://github.com",
-    description: "Command-line tool to inspect and optimize multi-cloud infrastructure, cost spikes, and security policies.",
-    language: "Go",
-    stargazers_count: 275,
-    forks_count: 31,
-    updated_at: new Date(Date.now() - 86400000 * 20).toISOString(),
-    topics: ["cli", "golang", "devops", "cloud"]
+    name: "Chis-Inven",
+    html_url: "https://github.com/Chisgamble/Chis-Inven",
+    description: "Full-featured modern inventory and supply chain tracking system built in TypeScript.",
+    language: "TypeScript",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-09-11T09:41:19Z",
+    topics: ["typescript", "inventory", "management", "system"]
   },
   {
-    name: "rust-pixel-synth",
-    html_url: "https://github.com",
-    description: "Real-time procedural GPU shader and pixel audio synthesizer compiled to WebAssembly.",
-    language: "Rust",
-    stargazers_count: 198,
-    forks_count: 18,
-    updated_at: new Date(Date.now() - 86400000 * 30).toISOString(),
-    topics: ["rust", "wasm", "webgl", "graphics"]
+    name: "ChatBoxApp_Java_Springboot",
+    html_url: "https://github.com/Chisgamble/ChatBoxApp_Java_Springboot",
+    description: "Real-time chat and messaging system engineered with Java and Spring Boot architecture.",
+    language: "Java",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-03-02T14:03:45Z",
+    topics: ["java", "springboot", "chat-app", "realtime"]
   },
   {
-    name: "tailwind-glass-presets",
-    html_url: "https://github.com",
-    description: "Curated collection of frosted glass effects, glowing borders, and gradient mesh utilities.",
-    language: "CSS",
-    stargazers_count: 145,
-    forks_count: 22,
-    updated_at: new Date(Date.now() - 86400000 * 45).toISOString(),
-    topics: ["css", "glassmorphism", "tailwind"]
+    name: "Spring-petclinic-microservices-clone",
+    html_url: "https://github.com/Chisgamble/Spring-petclinic-microservices-clone",
+    description: "Distributed cloud-native microservices architecture clone utilizing Spring Cloud and Spring Boot.",
+    language: "Java",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-07-20T04:52:35Z",
+    topics: ["java", "microservices", "spring-cloud", "docker"]
+  },
+  {
+    name: "DominiShop",
+    html_url: "https://github.com/Chisgamble/DominiShop",
+    description: "Modern e-commerce and retail shopping management application developed in C# / .NET.",
+    language: "C#",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-05-13T10:24:21Z",
+    topics: ["csharp", "dotnet", "ecommerce", "store"]
+  },
+  {
+    name: "pokemon",
+    html_url: "https://github.com/Chisgamble/pokemon",
+    description: "Object-oriented Pokemon gameplay simulation and combat engine developed in C++.",
+    language: "C++",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-04-23T10:21:03Z",
+    topics: ["cpp", "game-dev", "simulation", "oop"]
+  },
+  {
+    name: "express-deployment",
+    html_url: "https://github.com/Chisgamble/express-deployment",
+    description: "Lightweight Node.js Express server configured with production deployment pipelines.",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2025-11-12T12:12:08Z",
+    topics: ["nodejs", "express", "backend"]
+  },
+  {
+    name: "profilito",
+    html_url: "https://github.com/Chisgamble/profilito",
+    description: "Interactive Developer Portfolio & GitHub Showcase built with modern Bento Grid and live GitHub REST API integration.",
+    language: "HTML",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2026-10-15T12:17:19Z",
+    topics: ["portfolio", "bento-grid", "github-api", "glassmorphism"]
   }
 ];
 
 class GitHubPortfolioApp {
   constructor() {
     this.config = window.PORTFOLIO_CONFIG || {};
-    this.currentUsername = this.config.username || "torvalds";
+    this.currentUsername = this.config.username || "Chisgamble";
     
     this.userProfile = null;
     this.repositories = [];
@@ -428,10 +459,23 @@ class GitHubPortfolioApp {
       }
 
     } catch (err) {
-      console.warn("Falling back to simulated data:", err.message);
-      // Use fallback data
-      this.userProfile = { ...FALLBACK_PROFILE, login: username, name: `${username} (Demo)` };
-      this.repositories = FALLBACK_REPOS;
+      console.warn("Falling back to local profile data:", err.message);
+      const isDefaultUser = !username || username.toLowerCase() === "chisgamble";
+      if (isDefaultUser) {
+        this.userProfile = { ...FALLBACK_PROFILE };
+        this.repositories = FALLBACK_REPOS;
+      } else {
+        this.userProfile = { 
+          ...FALLBACK_PROFILE, 
+          login: username, 
+          name: username,
+          html_url: `https://github.com/${username}`
+        };
+        this.repositories = FALLBACK_REPOS.map(r => ({
+          ...r,
+          html_url: `https://github.com/${username}/${r.name}`
+        }));
+      }
     }
 
     // Render entire UI with fetched data
@@ -492,11 +536,13 @@ class GitHubPortfolioApp {
     const brandName = document.getElementById("nav-brand-name");
     const footerBrand = document.getElementById("footer-brand-name");
 
-    const displayName = u.name || u.login;
+    const userGithubUrl = u.html_url || (this.config.socials && this.config.socials.github) || `https://github.com/${this.currentUsername}`;
+
+    const displayName = u.name || this.config.username || u.login;
     if (nameEl) nameEl.textContent = displayName;
     if (handleEl) {
-      handleEl.textContent = `@${u.login}`;
-      handleEl.href = u.html_url;
+      handleEl.textContent = `@${u.login || this.currentUsername}`;
+      handleEl.href = userGithubUrl;
     }
     if (titleEl) {
       titleEl.textContent = this.config.customTitle || "Software Engineer & Open Source Developer";
@@ -526,7 +572,7 @@ class GitHubPortfolioApp {
 
     const blogEl = document.getElementById("meta-blog");
     if (blogEl) {
-      const blogUrl = u.blog ? (u.blog.startsWith("http") ? u.blog : `https://${u.blog}`) : u.html_url;
+      const blogUrl = u.blog ? (u.blog.startsWith("http") ? u.blog : `https://${u.blog}`) : userGithubUrl;
       blogEl.href = blogUrl;
       blogEl.textContent = u.blog ? u.blog.replace(/^https?:\/\//, '') : "github.com";
     }
@@ -538,7 +584,7 @@ class GitHubPortfolioApp {
 
     // GitHub button
     const ghBtn = document.getElementById("btn-github-profile");
-    if (ghBtn) ghBtn.href = u.html_url;
+    if (ghBtn) ghBtn.href = userGithubUrl;
 
     // Repos count button in hero
     const reposBtnCount = document.getElementById("btn-repos-count");
@@ -552,7 +598,7 @@ class GitHubPortfolioApp {
 
     // Social modal links
     const modalGh = document.getElementById("modal-social-gh");
-    if (modalGh) modalGh.href = u.html_url;
+    if (modalGh) modalGh.href = userGithubUrl;
 
     const modalLi = document.getElementById("modal-social-li");
     if (modalLi && this.config.socials && this.config.socials.linkedin) {
