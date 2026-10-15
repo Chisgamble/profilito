@@ -30,6 +30,30 @@ const LANGUAGE_COLORS = {
   Elixir: "#6e4a7e"
 };
 
+// Curated project descriptions and topics for repositories that lack GitHub descriptions
+const REPO_DESCRIPTIONS_MAP = {
+  "bidzone": "Real-time online auction & bidding web platform with live countdown and responsive interface. Deployed live on Vercel.",
+  "TroUyTin": "Trusted boarding house and rental accommodation platform built with TypeScript, featuring room listings and tenant management.",
+  "Chis-Inven": "Full-featured modern inventory and supply chain tracking system built in TypeScript.",
+  "ChatBoxApp_Java_Springboot": "Real-time chat and messaging system engineered with Java and Spring Boot architecture.",
+  "Spring-petclinic-microservices-clone": "Distributed cloud-native microservices architecture clone utilizing Spring Cloud and Spring Boot.",
+  "DominiShop": "Modern e-commerce and retail shopping management application developed in C# / .NET.",
+  "pokemon": "Object-oriented Pokemon gameplay simulation and combat engine developed in C++.",
+  "express-deployment": "Lightweight Node.js Express server configured with production deployment pipelines.",
+  "profilito": "Interactive Developer Portfolio & GitHub Showcase built with modern Bento Grid and live GitHub REST API integration."
+};
+
+const REPO_TOPICS_MAP = {
+  "bidzone": ["javascript", "auction", "vercel", "web-app"],
+  "TroUyTin": ["typescript", "rental", "accommodation", "fullstack"],
+  "Chis-Inven": ["typescript", "inventory", "management", "system"],
+  "ChatBoxApp_Java_Springboot": ["java", "springboot", "chat-app", "realtime"],
+  "Spring-petclinic-microservices-clone": ["java", "microservices", "spring-cloud", "docker"],
+  "DominiShop": ["csharp", "dotnet", "ecommerce", "store"],
+  "pokemon": ["cpp", "game-dev", "simulation", "oop"],
+  "profilito": ["portfolio", "bento-grid", "github-api", "glassmorphism"]
+};
+
 // Fallback user data in case of GitHub API rate limits
 const FALLBACK_PROFILE = {
   login: "octocat",
@@ -666,7 +690,7 @@ class GitHubPortfolioApp {
       titleEl.href = featured.html_url;
     }
     if (descEl) {
-      descEl.textContent = featured.description || "High-impact open source repository.";
+      descEl.textContent = featured.description || REPO_DESCRIPTIONS_MAP[featured.name] || "High-impact open source repository.";
     }
     if (langEl) {
       langEl.textContent = featured.language || "Open Source";
@@ -685,9 +709,10 @@ class GitHubPortfolioApp {
     if (linkEl) linkEl.href = featured.html_url;
 
     if (topicsEl) {
+      const customTopics = REPO_TOPICS_MAP[featured.name];
       const topics = (featured.topics && featured.topics.length > 0) 
         ? featured.topics.slice(0, 4) 
-        : [featured.language || "developer", "open-source", "git"];
+        : (customTopics || [featured.language || "developer", "open-source", "git"]);
       topicsEl.innerHTML = topics.map(t => `<span class="topic-tag">#${t}</span>`).join("");
     }
   }
@@ -856,9 +881,14 @@ class GitHubPortfolioApp {
 
     const cardsHtml = paginatedRepos.map(repo => {
       const color = LANGUAGE_COLORS[repo.language] || "#6366f1";
-      const topicsHtml = (repo.topics && repo.topics.length > 0)
-        ? repo.topics.slice(0, 3).map(t => `<span class="topic-tag">#${t}</span>`).join("")
+      const customTopics = REPO_TOPICS_MAP[repo.name];
+      const topicsList = (repo.topics && repo.topics.length > 0)
+        ? repo.topics
+        : (customTopics || []);
+      const topicsHtml = topicsList.length > 0
+        ? topicsList.slice(0, 3).map(t => `<span class="topic-tag">#${t}</span>`).join("")
         : "";
+      const repoDescription = repo.description || REPO_DESCRIPTIONS_MAP[repo.name] || "Open source software repository.";
 
       return `
         <div class="repo-card glass-panel">
@@ -874,7 +904,7 @@ class GitHubPortfolioApp {
               <span class="repo-badge-vis">Public</span>
             </div>
             
-            <p class="repo-desc">${repo.description || "No description provided for this repository."}</p>
+            <p class="repo-desc">${repoDescription}</p>
 
             ${topicsHtml ? `<div class="repo-card-topics">${topicsHtml}</div>` : ''}
           </div>

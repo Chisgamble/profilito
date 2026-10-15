@@ -1,70 +1,67 @@
 // =====================================================================
-// GITHUB PORTFOLIO CONFIGURATION
-// =====================================================================
-// You can customize your portfolio simply by editing this configuration file!
-// Change 'username' to your own GitHub username.
+// GITHUB PORTFOLIO CONFIGURATION - TRẦN KHÔN CHÍ (Chisgamble)
 // =====================================================================
 
 const PORTFOLIO_CONFIG = {
   // Your default GitHub username (live data will be fetched for this user)
-  username: "torvalds", // Change this to your GitHub username!
+  username: "Chisgamble",
   
   // Custom header tagline / title displayed under your name
-  customTitle: "Full-Stack Engineer & Open Source Enthusiast",
+  customTitle: "Full-Stack Software Engineer & Microservices Developer",
   
-  // Custom headline/intro if you want to override or complement GitHub bio
-  customBio: "Building scalable distributed systems, high-performance web applications, and intuitive developer tooling. Passionate about open source software and modern UI craft.",
+  // Custom headline/intro
+  customBio: "Full-Stack Engineer specialized in TypeScript, Spring Boot microservices, React, and modern web applications. Passionate about building robust systems, interactive digital platforms, and scalable architecture.",
   
   // Your current status / availability
   status: {
     available: true,
-    text: "Open to new opportunities & collaborations",
-    location: "Global / Remote"
+    text: "Open for Software Engineering & Full-Stack roles",
+    location: "Vietnam / Remote"
   },
   
   // Social links
   socials: {
-    github: "https://github.com",
+    github: "https://github.com/Chisgamble",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com",
-    email: "developer@example.com",
-    website: "https://github.com"
+    email: "chitrankhon@gmail.com",
+    website: "https://github.com/Chisgamble"
   },
   
   // Skills categorized for the Tech Stack Bento Card
   techStack: {
-    frontend: ["TypeScript", "React", "Next.js", "Vue.js", "TailwindCSS", "HTML5/CSS3", "WebGL"],
-    backend: ["Node.js", "Python", "Go", "Rust", "GraphQL", "PostgreSQL", "Redis"],
-    devops: ["Docker", "Kubernetes", "AWS", "GitHub Actions", "CI/CD", "Linux"],
-    tools: ["Git", "VS Code", "Figma", "Postman", "Jest", "Vite"]
+    frontend: ["TypeScript", "JavaScript", "React", "Next.js", "HTML5/CSS3", "TailwindCSS"],
+    backend: ["Java", "Spring Boot", "Spring Microservices", "C# / .NET", "Node.js", "Express.js"],
+    devops: ["Docker", "Git / GitHub", "Vercel", "CI/CD", "RESTful APIs", "SQL"],
+    tools: ["VS Code", "IntelliJ IDEA", "Postman", "Maven", "Gradle"]
   },
 
-  // Experience timeline (highlights your journey)
+  // Experience & Project highlights
   experience: [
     {
-      role: "Senior Software Engineer",
-      company: "Tech Innovations Lab",
-      period: "2023 — Present",
-      description: "Leading frontend architecture and building high-throughput microservices. Spearheaded migration to modern distributed architecture."
-    },
-    {
       role: "Full-Stack Developer",
-      company: "Open Source Collective",
-      period: "2021 — 2023",
-      description: "Crafted responsive web applications and developer tools. Maintained popular open source libraries with 10k+ stars."
+      company: "Independent & Open Source Projects",
+      period: "2023 — Present",
+      description: "Architected and delivered multiple end-to-end full stack web platforms including BidZone (real-time auction platform deployed on Vercel), TroUyTin (rental accommodation platform in TypeScript), and Chis-Inven."
     },
     {
-      role: "Software Engineering Intern",
-      company: "NextGen Software",
-      period: "2020 — 2021",
-      description: "Developed user dashboards, optimized database queries, and implemented automated test suites."
+      role: "Backend & Microservices Engineer",
+      company: "Spring & Java Ecosystem",
+      period: "2024 — 2026",
+      description: "Engineered distributed microservices with Spring Boot and Spring Cloud, implemented real-time chat architecture in ChatBoxApp, and built robust API integrations."
+    },
+    {
+      role: "Software Engineering & Game Development",
+      company: "Core Systems & Algorithms",
+      period: "2023 — 2024",
+      description: "Designed core game mechanics and object-oriented simulation in C++ (Pokemon), alongside .NET / C# enterprise commerce applications (DominiShop)."
     }
   ],
 
-  // Featured repositories to prioritize (repo names), or leave empty to auto-pick top starred repos
-  featuredRepoNames: [],
+  // Featured repositories to prioritize
+  featuredRepoNames: ["bidzone", "TroUyTin", "Chis-Inven", "ChatBoxApp_Java_Springboot", "Spring-petclinic-microservices-clone"],
 
-  // Resume download link (can be a local file path like './resume.pdf' or a cloud link)
+  // Resume download link
   resumeUrl: "#"
 };
 
