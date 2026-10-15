@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Portfolio & GitHub Showcase</title>
+  <meta name="description" content="Modern, dynamic developer portfolio featuring real-time GitHub integration, bento grid statistics, interactive project explorer, and tech stack showcase.">
+  <meta name="keywords" content="GitHub Portfolio, Developer Portfolio, Software Engineer, Web Developer, Bento Grid, Open Source">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'><path d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="violet">
+  <!-- Interactive Ambient Cursor Spotlight & Glow Mesh -->
+  <div class="spotlight" id="spotlight"></div>
+  <div class="mesh-background" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Global Header / Navigation -->
+  <header class="site-header" id="navbar">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" id="brand-logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </span>
+        <span class="brand-name" id="nav-brand-name">Dev<span class="brand-accent">Portfolio</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-menu">
+        <a href="#hero" class="nav-link active">About</a>
+        <a href="#bento-section" class="nav-link">Overview</a>
+        <a href="#repositories" class="nav-link">Repositories</a>
+        <a href="#tech-stack" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Journey</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Live GitHub Username Switcher -->
+        <div class="username-switcher-wrapper">
+          <button class="switcher-btn" id="open-switcher-btn" title="Switch GitHub profile to explore">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span id="current-user-display">@username</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Theme Accent Switcher -->
+        <div class="theme-dropdown">
+          <button class="icon-btn" id="theme-btn" title="Change Theme Accent" aria-label="Change Color Theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <div class="theme-menu" id="theme-menu">
+            <button class="theme-opt" data-set-theme="violet"><span class="swatch violet"></span>Cyber Violet</button>
+            <button class="theme-opt" data-set-theme="cyan"><span class="swatch cyan"></span>Electric Cyan</button>
+            <button class="theme-opt" data-set-theme="emerald"><span class="swatch emerald"></span>Matrix Emerald</button>
+            <button class="theme-opt" data-set-theme="amber"><span class="swatch amber"></span>Sunset Amber</button>
+          </div>
+        </div>
+
+        <!-- Contact CTA -->
+        <button class="btn btn-primary btn-sm" id="open-contact-modal-btn">
+          <span>Get in Touch</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" fill="none" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Profile Switcher Dropdown Modal / Bar -->
+  <div class="switcher-modal-backdrop" id="switcher-modal">
+    <div class="switcher-dialog glass-panel">
+      <div class="switcher-header">
+        <div class="switcher-title">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <h3>Load Any GitHub Profile</h3>
+        </div>
+        <button class="close-btn" id="close-switcher-btn">&times;</button>
+      </div>
+      <p class="switcher-desc">Enter any valid GitHub username to instantly load their live public repositories, statistics, languages, and bio in this portfolio layout.</p>
+      <form class="switcher-form" id="switcher-form">
+        <div class="input-group">
+          <span class="input-icon">@</span>
+          <input type="text" id="username-input" placeholder="e.g. your-github-handle" required autocomplete="off" autocorrect="off">
+        </div>
+        <button type="submit" class="btn btn-primary" id="switcher-submit-btn">
+          <span>Load Profile</span>
+        </button>
+      </form>
+      <div class="quick-examples">
+        <span>Popular demos:</span>
+        <button type="button" class="quick-user-tag" data-user="shadcn">shadcn</button>
+        <button type="button" class="quick-user-tag" data-user="sindresorhus">sindresorhus</button>
+        <button type="button" class="quick-user-tag" data-user="gaearon">gaearon</button>
+        <button type="button" class="quick-user-tag" data-user="torvalds">torvalds</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <!-- Status Indicator Pill -->
+        <div class="status-badge" id="hero-status-badge">
+          <span class="status-pulse"></span>
+          <span class="status-text" id="status-text-content">Available for new opportunities</span>
+        </div>
+
+        <div class="hero-profile-row">
+          <!-- Avatar with glowing border -->
+          <div class="avatar-wrapper">
+            <div class="avatar-glow"></div>
+            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231e293b'/><circle cx='50' cy='45' r='20' fill='%236366f1'/><path d='M25 85 C25 65 75 65 75 85' fill='%236366f1'/></svg>" 
+                 alt="Profile Avatar" 
+                 class="hero-avatar" 
+                 id="user-avatar">
+            <div class="avatar-badge" title="Live GitHub Profile">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Hero Details -->
+          <div class="hero-details">
+            <h1 class="hero-name" id="user-name">Loading Profile...</h1>
+            <div class="hero-handle-row">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="hero-handle" id="user-handle">@username</a>
+              <span class="hero-dot">&bull;</span>
+              <span class="hero-role" id="user-title">Software Engineer</span>
+            </div>
+            
+            <p class="hero-bio" id="user-bio">
+              Fetching profile and repositories directly from the GitHub API...
+            </p>
+
+            <!-- Meta tags (location, company, website, followers) -->
+            <div class="hero-meta-grid" id="user-meta">
+              <div class="meta-item" id="meta-location-wrap">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span id="meta-location">Remote / Global</span>
+              </div>
+              <div class="meta-item" id="meta-company-wrap">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+                <span id="meta-company">Independent</span>
+              </div>
+              <div class="meta-item" id="meta-blog-wrap">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <a href="#" target="_blank" rel="noopener noreferrer" id="meta-blog">Portfolio</a>
+              </div>
+              <div class="meta-item">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span><strong id="meta-followers">0</strong> followers &bull; <strong id="meta-following">0</strong> following</span>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="hero-actions">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="btn-github-profile">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span>GitHub Profile</span>
+              </a>
+
+              <a href="#repositories" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <span>Explore Repos (<span id="btn-repos-count">0</span>)</span>
+              </a>
+
+              <button class="btn btn-glass" id="btn-share-profile" title="Copy profile URL">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Share</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Showcase Section -->
+    <section class="bento-section" id="bento-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">DEVELOPER INSIGHTS</div>
+          <h2 class="section-title">Bento Performance Grid</h2>
+          <p class="section-desc">Real-time aggregate data, code telemetry, tech stacks, and active open source contributions.</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Bento 1: Aggregated GitHub Statistics -->
+          <div class="bento-card bento-card-large glass-panel" id="bento-stats">
+            <div class="card-glow"></div>
+            <div class="bento-card-header">
+              <div class="bento-icon-title">
+                <div class="bento-icon-badge">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                </div>
+                <h3>GitHub Telemetry & Impact</h3>
+              </div>
+              <span class="live-pill">LIVE SYNC</span>
+            </div>
+
+            <div class="stats-counter-grid">
+              <div class="stat-counter-box">
+                <span class="stat-label">Total Stars Earned</span>
+                <div class="stat-num-row">
+                  <span class="stat-icon-star">★</span>
+                  <span class="stat-number" id="stat-total-stars">0</span>
+                </div>
+                <span class="stat-sub">Across all repositories</span>
+              </div>
+              <div class="stat-counter-box">
+                <span class="stat-label">Total Forks</span>
+                <div class="stat-num-row">
+                  <span class="stat-icon-fork">⑂</span>
+                  <span class="stat-number" id="stat-total-forks">0</span>
+                </div>
+                <span class="stat-sub">Community extensions</span>
+              </div>
+              <div class="stat-counter-box">
+                <span class="stat-label">Public Repos</span>
+                <div class="stat-num-row">
+                  <span class="stat-icon-repo">📦</span>
+                  <span class="stat-number" id="stat-total-repos">0</span>
+                </div>
+                <span class="stat-sub">Open-source codebases</span>
+              </div>
+              <div class="stat-counter-box">
+                <span class="stat-label">Followers</span>
+                <div class="stat-num-row">
+                  <span class="stat-icon-users">👥</span>
+                  <span class="stat-number" id="stat-followers-count">0</span>
+                </div>
+                <span class="stat-sub">Global developer reach</span>
+              </div>
+            </div>
+
+            <!-- Top Languages Breakdown Bar -->
+            <div class="languages-breakdown">
+              <div class="breakdown-header">
+                <h4>Top Languages Breakdown</h4>
+                <span class="breakdown-total" id="lang-repos-total">Calculated from repositories</span>
+              </div>
+              <div class="multi-progress-bar" id="languages-progress-bar">
+                <!-- Dynamic segmented progress bar -->
+                <div class="progress-segment" style="width: 100%; background: var(--accent-gradient);"></div>
+              </div>
+              <div class="languages-legend" id="languages-legend-list">
+                <!-- Dynamic language pills -->
+                <span class="lang-legend-pill">Loading languages...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 2: Contribution Heatmap Simulation -->
+          <div class="bento-card bento-card-medium glass-panel" id="bento-activity">
+            <div class="card-glow"></div>
+            <div class="bento-card-header">
+              <div class="bento-icon-title">
+                <div class="bento-icon-badge">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </div>
+                <h3>Contribution Activity</h3>
+              </div>
+              <span class="activity-streak" id="activity-streak-display">Active Contributor</span>
+            </div>
+            
+            <p class="bento-desc">Annual contribution consistency and recent commit velocity.</p>
+
+            <div class="heatmap-container" id="heatmap-grid" aria-label="Contribution activity grid">
+              <!-- Dynamically populated 52-week or 20-week visual grid -->
+            </div>
+
+            <div class="heatmap-legend">
+              <span>Less</span>
+              <div class="legend-scale">
+                <span class="scale-box lvl-0"></span>
+                <span class="scale-box lvl-1"></span>
+                <span class="scale-box lvl-2"></span>
+                <span class="scale-box lvl-3"></span>
+                <span class="scale-box lvl-4"></span>
+              </div>
+              <span>More</span>
+            </div>
+          </div>
+
+          <!-- Bento 3: Featured Repository Spotlight -->
+          <div class="bento-card bento-card-medium glass-panel featured-repo-card" id="bento-featured-repo">
+            <div class="card-glow"></div>
+            <div class="bento-card-header">
+              <div class="bento-icon-title">
+                <div class="bento-icon-badge badge-amber">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </div>
+                <h3>Star Spotlight</h3>
+              </div>
+              <span class="pill-featured">TOP REPOSITORY</span>
+            </div>
+
+            <div class="featured-repo-content" id="featured-repo-content">
+              <div class="featured-repo-name-row">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="featured-repo-title" id="featured-title">Loading top project...</a>
+                <span class="featured-badge" id="featured-lang">Code</span>
+              </div>
+              <p class="featured-repo-desc" id="featured-desc">
+                Analyzing repositories to highlight the most impactful project.
+              </p>
+              <div class="featured-topics" id="featured-topics">
+                <!-- Topics inserted dynamically -->
+              </div>
+              <div class="featured-footer">
+                <div class="featured-stats">
+                  <span>★ <strong id="featured-stars">0</strong></span>
+                  <span>⑂ <strong id="featured-forks">0</strong></span>
+                  <span id="featured-updated">Updated recently</span>
+                </div>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xs" id="featured-link">
+                  <span>View Code</span>
+                  <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 4: Philosophy & Live Status -->
+          <div class="bento-card bento-card-small glass-panel" id="bento-philosophy">
+            <div class="card-glow"></div>
+            <div class="bento-card-header">
+              <div class="bento-icon-title">
+                <div class="bento-icon-badge">
+                  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <h3>Availability & Time</h3>
+              </div>
+            </div>
+            <div class="clock-display">
+              <div class="time-readout" id="clock-time">00:00:00</div>
+              <div class="time-meta" id="clock-zone">Local Time &bull; Active</div>
+            </div>
+            <p class="philosophy-quote" id="philosophy-text">
+              "First, solve the problem. Then, write the code."
+            </p>
+          </div>
+
+          <!-- Bento 5: Tech Stack & Skills -->
+          <div class="bento-card bento-card-wide glass-panel" id="tech-stack">
+            <div class="card-glow"></div>
+            <div class="bento-card-header">
+              <div class="bento-icon-title">
+                <div class="bento-icon-badge">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <h3>Core Technologies & Stack</h3>
+              </div>
+              <div class="stack-category-tabs" id="stack-tabs">
+                <button class="stack-tab active" data-category="all">All</button>
+                <button class="stack-tab" data-category="frontend">Frontend</button>
+                <button class="stack-tab" data-category="backend">Backend</button>
+                <button class="stack-tab" data-category="devops">DevOps/Cloud</button>
+                <button class="stack-tab" data-category="tools">Tools</button>
+              </div>
+            </div>
+            
+            <div class="tech-pills-container" id="tech-pills-wrap">
+              <!-- Dynamically populated from config or inferred from top repo languages -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience / Career Journey Section -->
+    <section class="experience-section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">CAREER MILESTONES</div>
+          <h2 class="section-title">Experience & Journey</h2>
+          <p class="section-desc">Key engineering roles, open source contributions, and leadership milestones.</p>
+        </div>
+
+        <div class="timeline-wrapper" id="timeline-container">
+          <!-- Populated from config.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Repositories Explorer Section -->
+    <section class="repos-section" id="repositories">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-subtitle">CODE ARTIFACTS</div>
+          <h2 class="section-title">Open Source Repositories</h2>
+          <p class="section-desc">Explore, filter, and inspect public repositories fetched live from GitHub.</p>
+        </div>
+
+        <!-- Filter Controls Bar -->
+        <div class="repos-filter-bar glass-panel">
+          <!-- Search input -->
+          <div class="repo-search-input-wrap">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="repo-search-input" placeholder="Search repositories by name or topic...">
+            <button class="clear-search-btn" id="clear-search-btn" aria-label="Clear search">&times;</button>
+          </div>
+
+          <!-- Language filter pills scroll -->
+          <div class="filter-language-group" id="language-filter-pills">
+            <button class="filter-pill active" data-lang="all">All Languages</button>
+            <!-- Injected dynamically -->
+          </div>
+
+          <!-- Sort selector -->
+          <div class="sort-selector-wrap">
+            <label for="repo-sort-select">Sort by:</label>
+            <select id="repo-sort-select" class="glass-select">
+              <option value="stars">Most Stars (★)</option>
+              <option value="forks">Most Forks (⑂)</option>
+              <option value="updated">Recently Updated</option>
+              <option value="name">Alphabetical (A-Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Repositories Grid -->
+        <div class="repos-grid" id="repos-grid">
+          <!-- Dynamic cards or skeleton loaders -->
+          <div class="repo-card-skeleton glass-panel">
+            <div class="skeleton-line title"></div>
+            <div class="skeleton-line desc"></div>
+            <div class="skeleton-line desc short"></div>
+            <div class="skeleton-footer"></div>
+          </div>
+          <div class="repo-card-skeleton glass-panel">
+            <div class="skeleton-line title"></div>
+            <div class="skeleton-line desc"></div>
+            <div class="skeleton-line desc short"></div>
+            <div class="skeleton-footer"></div>
+          </div>
+          <div class="repo-card-skeleton glass-panel">
+            <div class="skeleton-line title"></div>
+            <div class="skeleton-line desc"></div>
+            <div class="skeleton-line desc short"></div>
+            <div class="skeleton-footer"></div>
+          </div>
+        </div>
+
+        <!-- Load More / Pagination -->
+        <div class="repos-pagination-wrap" id="pagination-wrap">
+          <button class="btn btn-secondary" id="btn-load-more">Load More Repositories</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Contact Modal -->
+  <div class="modal-backdrop" id="contact-modal">
+    <div class="modal-dialog glass-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <div class="modal-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <h3>Let's Collaborate</h3>
+        </div>
+        <button class="close-btn" id="close-contact-modal-btn">&times;</button>
+      </div>
+
+      <p class="modal-sub">Send a direct message or connect across platforms.</p>
+
+      <form class="contact-form" id="contact-form">
+        <div class="form-group">
+          <label for="contact-name">Your Name</label>
+          <input type="text" id="contact-name" placeholder="Ada Lovelace" required>
+        </div>
+
+        <div class="form-group">
+          <label for="contact-email">Email Address</label>
+          <input type="email" id="contact-email" placeholder="ada@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" rows="4" placeholder="Let's build something amazing together..." required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-block" id="btn-send-message">
+            <span>Send Message</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </form>
+
+      <div class="modal-direct-contact">
+        <div class="divider"><span>OR CONNECT DIRECTLY</span></div>
+        <div class="social-links-grid" id="modal-social-links">
+          <button class="social-chip" id="copy-email-btn" title="Copy Email">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copy-email-text">Copy Email</span>
+          </button>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="social-chip" id="modal-social-gh">
+            <span>GitHub</span>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="social-chip" id="modal-social-li">
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="brand-name" id="footer-brand-name">Dev<span class="brand-accent">Portfolio</span></span>
+        </div>
+        <p class="footer-text">Powered by the live GitHub REST API & Vanilla Web Technologies.</p>
+      </div>
+
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top-btn" aria-label="Back to top">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+          <span>Back to Top</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
