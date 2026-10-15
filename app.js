@@ -1,7 +1,8 @@
 /**
  * =====================================================================
- * GITHUB PORTFOLIO ENGINE (Vanilla JavaScript)
- * Live GitHub API integration, Bento grid metrics, interactive filters
+ * GITHUB PORTFOLIO ENGINE - TRẦN KHÔN CHÍ (@Chisgamble)
+ * Zero-latency local data architecture (no GitHub API rate limits)
+ * Interactive Bento grid telemetry, language breakdown, and repo explorer
  * =====================================================================
  */
 
@@ -30,32 +31,11 @@ const LANGUAGE_COLORS = {
   Elixir: "#6e4a7e"
 };
 
-// Curated project descriptions and topics for repositories that lack GitHub descriptions
-const REPO_DESCRIPTIONS_MAP = {
-  "bidzone": "Real-time online auction & bidding web platform with live countdown and responsive interface. Deployed live on Vercel.",
-  "TroUyTin": "Trusted boarding house and rental accommodation platform built with TypeScript, featuring room listings and tenant management.",
-  "Chis-Inven": "Full-featured modern inventory and supply chain tracking system built in TypeScript.",
-  "ChatBoxApp_Java_Springboot": "Real-time chat and messaging system engineered with Java and Spring Boot architecture.",
-  "Spring-petclinic-microservices-clone": "Distributed cloud-native microservices architecture clone utilizing Spring Cloud and Spring Boot.",
-  "DominiShop": "Modern e-commerce and retail shopping management application developed in C# / .NET.",
-  "pokemon": "Object-oriented Pokemon gameplay simulation and combat engine developed in C++.",
-  "express-deployment": "Lightweight Node.js Express server configured with production deployment pipelines.",
-  "profilito": "Interactive Developer Portfolio & GitHub Showcase built with modern Bento Grid and live GitHub REST API integration."
-};
-
-const REPO_TOPICS_MAP = {
-  "bidzone": ["javascript", "auction", "vercel", "web-app"],
-  "TroUyTin": ["typescript", "rental", "accommodation", "fullstack"],
-  "Chis-Inven": ["typescript", "inventory", "management", "system"],
-  "ChatBoxApp_Java_Springboot": ["java", "springboot", "chat-app", "realtime"],
-  "Spring-petclinic-microservices-clone": ["java", "microservices", "spring-cloud", "docker"],
-  "DominiShop": ["csharp", "dotnet", "ecommerce", "store"],
-  "pokemon": ["cpp", "game-dev", "simulation", "oop"],
-  "profilito": ["portfolio", "bento-grid", "github-api", "glassmorphism"]
-};
-
-// Fallback user data for Trần Khôn Chí (Chisgamble) in case of GitHub API rate limits
-const FALLBACK_PROFILE = {
+// =====================================================================
+// HARDCODED PROFILE DATA - TRẦN KHÔN CHÍ (@Chisgamble)
+// Guaranteed instant load without any GitHub API rate limits
+// =====================================================================
+const CHISGAMBLE_PROFILE = {
   login: "Chisgamble",
   name: "Trần Khôn Chí",
   avatar_url: "https://avatars.githubusercontent.com/u/147268737?v=4",
@@ -69,22 +49,23 @@ const FALLBACK_PROFILE = {
   following: 0
 };
 
-const FALLBACK_REPOS = [
+// Complete list of all 11 public repositories for Chisgamble
+const CHISGAMBLE_REPOS = [
   {
     name: "bidzone",
     html_url: "https://github.com/Chisgamble/bidzone",
     homepage: "https://bidzone-nu.vercel.app",
-    description: "Real-time online auction & bidding web platform with live countdown and responsive interface. Deployed live on Vercel.",
+    description: "Real-time online auction & bidding web platform with live countdown, responsive user interface, and bidding state management. Deployed live on Vercel.",
     language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
     updated_at: "2026-01-06T15:55:45Z",
-    topics: ["javascript", "auction", "vercel", "web-app"]
+    topics: ["javascript", "auction", "vercel", "realtime", "web-app"]
   },
   {
     name: "TroUyTin",
     html_url: "https://github.com/Chisgamble/TroUyTin",
-    description: "Trusted boarding house and rental accommodation platform built with TypeScript, featuring room listings and tenant management.",
+    description: "Trusted boarding house and rental accommodation platform built with TypeScript, featuring room listings, tenant matching, and management workflows.",
     language: "TypeScript",
     stargazers_count: 0,
     forks_count: 1,
@@ -94,7 +75,7 @@ const FALLBACK_REPOS = [
   {
     name: "Chis-Inven",
     html_url: "https://github.com/Chisgamble/Chis-Inven",
-    description: "Full-featured modern inventory and supply chain tracking system built in TypeScript.",
+    description: "Full-featured modern inventory tracking and supply chain management system developed with TypeScript architecture.",
     language: "TypeScript",
     stargazers_count: 0,
     forks_count: 0,
@@ -104,17 +85,17 @@ const FALLBACK_REPOS = [
   {
     name: "ChatBoxApp_Java_Springboot",
     html_url: "https://github.com/Chisgamble/ChatBoxApp_Java_Springboot",
-    description: "Real-time chat and messaging system engineered with Java and Spring Boot architecture.",
+    description: "Real-time chat and instant messaging application engineered with Java and Spring Boot architecture.",
     language: "Java",
     stargazers_count: 0,
     forks_count: 0,
     updated_at: "2026-03-02T14:03:45Z",
-    topics: ["java", "springboot", "chat-app", "realtime"]
+    topics: ["java", "springboot", "chat-app", "realtime", "messaging"]
   },
   {
     name: "Spring-petclinic-microservices-clone",
     html_url: "https://github.com/Chisgamble/Spring-petclinic-microservices-clone",
-    description: "Distributed cloud-native microservices architecture clone utilizing Spring Cloud and Spring Boot.",
+    description: "Distributed cloud-native microservices architecture clone utilizing Spring Cloud, service discovery, and Docker containers.",
     language: "Java",
     stargazers_count: 0,
     forks_count: 0,
@@ -124,7 +105,7 @@ const FALLBACK_REPOS = [
   {
     name: "DominiShop",
     html_url: "https://github.com/Chisgamble/DominiShop",
-    description: "Modern e-commerce and retail shopping management application developed in C# / .NET.",
+    description: "Modern retail e-commerce application developed in C# / .NET, featuring catalog browsing, checkout processing, and cart management.",
     language: "C#",
     stargazers_count: 0,
     forks_count: 0,
@@ -134,7 +115,7 @@ const FALLBACK_REPOS = [
   {
     name: "pokemon",
     html_url: "https://github.com/Chisgamble/pokemon",
-    description: "Object-oriented Pokemon gameplay simulation and combat engine developed in C++.",
+    description: "Object-oriented Pokemon combat engine and gameplay mechanics simulation developed in modern C++.",
     language: "C++",
     stargazers_count: 0,
     forks_count: 0,
@@ -144,38 +125,59 @@ const FALLBACK_REPOS = [
   {
     name: "express-deployment",
     html_url: "https://github.com/Chisgamble/express-deployment",
-    description: "Lightweight Node.js Express server configured with production deployment pipelines.",
+    homepage: "https://express-deployment-ochre.vercel.app",
+    description: "Production Node.js Express server configured with continuous deployment pipelines, live on Vercel.",
     language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
-    updated_at: "2025-11-12T12:12:08Z",
-    topics: ["nodejs", "express", "backend"]
+    updated_at: "2025-10-10T08:20:36Z",
+    topics: ["nodejs", "express", "backend", "vercel"]
   },
   {
     name: "profilito",
     html_url: "https://github.com/Chisgamble/profilito",
-    description: "Interactive Developer Portfolio & GitHub Showcase built with modern Bento Grid and live GitHub REST API integration.",
-    language: "HTML",
+    description: "Interactive Developer Portfolio & GitHub Showcase built with modern Bento Grid, Dark Glassmorphism, and responsive UI craft.",
+    language: "JavaScript",
     stargazers_count: 0,
     forks_count: 0,
     updated_at: "2026-10-15T12:17:19Z",
-    topics: ["portfolio", "bento-grid", "github-api", "glassmorphism"]
+    topics: ["portfolio", "bento-grid", "glassmorphism", "showcase"]
+  },
+  {
+    name: "xv6_lab",
+    html_url: "https://github.com/Chisgamble/xv6_lab",
+    description: "Operating system kernel development, system calls implementation, and process scheduling based on the MIT xv6 teaching OS.",
+    language: "C",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2025-03-13T10:03:24Z",
+    topics: ["c", "operating-systems", "kernel", "xv6"]
+  },
+  {
+    name: "svgRender",
+    html_url: "https://github.com/Chisgamble/svgRender",
+    description: "Interactive vector graphics, procedural animations, and SVG rendering experiments for high-performance web graphics.",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: "2024-10-31T03:56:49Z",
+    topics: ["svg", "graphics", "vector", "web"]
   }
 ];
 
 class GitHubPortfolioApp {
   constructor() {
     this.config = window.PORTFOLIO_CONFIG || {};
-    this.currentUsername = this.config.username || "Chisgamble";
+    this.currentUsername = "Chisgamble";
     
-    this.userProfile = null;
-    this.repositories = [];
+    this.userProfile = { ...CHISGAMBLE_PROFILE };
+    this.repositories = [...CHISGAMBLE_REPOS];
     this.filteredRepos = [];
     
     // Repository filter states
     this.selectedLanguage = "all";
     this.searchQuery = "";
-    this.sortBy = "stars";
+    this.sortBy = "updated";
     this.reposPerPage = 6;
     this.currentPage = 1;
 
@@ -191,8 +193,8 @@ class GitHubPortfolioApp {
     this.renderTechStack("all");
     this.generateContributionMatrix();
 
-    // Fetch GitHub Profile and Repos
-    this.loadGitHubData(this.currentUsername);
+    // Instant local load - no API delays, no rate limits!
+    this.loadProfileData();
   }
 
   // =====================================================================
@@ -299,7 +301,7 @@ class GitHubPortfolioApp {
           const targetUser = usernameInput.value.trim();
           if (targetUser) {
             switcherModal.classList.remove("open");
-            this.loadGitHubData(targetUser);
+            this.handleUserSwitch(targetUser);
           }
         });
       }
@@ -309,7 +311,7 @@ class GitHubPortfolioApp {
         tag.addEventListener("click", () => {
           const u = tag.dataset.user;
           switcherModal.classList.remove("open");
-          this.loadGitHubData(u);
+          this.handleUserSwitch(u);
         });
       });
     }
@@ -343,7 +345,7 @@ class GitHubPortfolioApp {
     const copyEmailBtn = document.getElementById("copy-email-btn");
     if (copyEmailBtn) {
       copyEmailBtn.addEventListener("click", () => {
-        const email = (this.config.socials && this.config.socials.email) || "developer@example.com";
+        const email = (this.config.socials && this.config.socials.email) || "chitrankhon@gmail.com";
         navigator.clipboard.writeText(email).then(() => {
           this.showToast(`Email copied: ${email}`, "success");
         }).catch(() => {
@@ -358,7 +360,7 @@ class GitHubPortfolioApp {
       shareBtn.addEventListener("click", () => {
         if (navigator.share) {
           navigator.share({
-            title: `${this.userProfile ? this.userProfile.name : 'Developer'} GitHub Portfolio`,
+            title: `Trần Khôn Chí (@Chisgamble) GitHub Portfolio`,
             url: window.location.href
           }).catch(() => {});
         } else {
@@ -425,60 +427,14 @@ class GitHubPortfolioApp {
   }
 
   // =====================================================================
-  // GITHUB DATA FETCHING
+  // INSTANT PROFILE LOADING (NO API RATE LIMITS)
   // =====================================================================
-  async loadGitHubData(username) {
-    this.currentUsername = username;
+  loadProfileData() {
+    this.currentUsername = "Chisgamble";
+    this.userProfile = { ...CHISGAMBLE_PROFILE };
+    this.repositories = [...CHISGAMBLE_REPOS];
+
     this.updateUserDisplay();
-    this.showSkeletons();
-
-    try {
-      // 1. Fetch user profile
-      const userRes = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}`);
-      
-      if (!userRes.ok) {
-        if (userRes.status === 403) {
-          this.showToast("GitHub API rate limit reached. Displaying demo profile.", "info");
-        } else if (userRes.status === 404) {
-          this.showToast(`User @${username} not found. Showing demo profile.`, "info");
-        }
-        throw new Error(`GitHub User fetch status: ${userRes.status}`);
-      }
-
-      this.userProfile = await userRes.json();
-
-      // 2. Fetch public repositories
-      const reposRes = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}/repos?per_page=100&sort=updated`);
-      if (!reposRes.ok) throw new Error(`GitHub Repos fetch status: ${reposRes.status}`);
-      
-      const allRepos = await reposRes.json();
-      // Filter out forks if preferred, or keep all
-      this.repositories = allRepos.filter(r => !r.fork);
-      if (this.repositories.length === 0) {
-        this.repositories = allRepos; // fallback if user only has forks
-      }
-
-    } catch (err) {
-      console.warn("Falling back to local profile data:", err.message);
-      const isDefaultUser = !username || username.toLowerCase() === "chisgamble";
-      if (isDefaultUser) {
-        this.userProfile = { ...FALLBACK_PROFILE };
-        this.repositories = FALLBACK_REPOS;
-      } else {
-        this.userProfile = { 
-          ...FALLBACK_PROFILE, 
-          login: username, 
-          name: username,
-          html_url: `https://github.com/${username}`
-        };
-        this.repositories = FALLBACK_REPOS.map(r => ({
-          ...r,
-          html_url: `https://github.com/${username}/${r.name}`
-        }));
-      }
-    }
-
-    // Render entire UI with fetched data
     this.renderProfile();
     this.renderBentoStats();
     this.renderLanguagesBreakdown();
@@ -487,46 +443,58 @@ class GitHubPortfolioApp {
     this.filterAndRenderRepos();
   }
 
+  handleUserSwitch(targetUser) {
+    if (!targetUser || targetUser.toLowerCase() === "chisgamble") {
+      this.loadProfileData();
+      this.showToast("Loaded Trần Khôn Chí (@Chisgamble) profile", "info");
+      return;
+    }
+
+    // For other users, attempt live API fetch with rate-limit safeguard
+    this.currentUsername = targetUser;
+    this.updateUserDisplay();
+    
+    fetch(`https://api.github.com/users/${encodeURIComponent(targetUser)}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Rate limit or not found");
+        return res.json();
+      })
+      .then(user => {
+        this.userProfile = user;
+        return fetch(`https://api.github.com/users/${encodeURIComponent(targetUser)}/repos?per_page=100&sort=updated`);
+      })
+      .then(res => res.json())
+      .then(repos => {
+        this.repositories = repos.filter(r => !r.fork);
+        if (this.repositories.length === 0) this.repositories = repos;
+        this.renderProfile();
+        this.renderBentoStats();
+        this.renderLanguagesBreakdown();
+        this.renderFeaturedRepo();
+        this.renderLanguageFilterPills();
+        this.filterAndRenderRepos();
+      })
+      .catch(() => {
+        // Fall back seamlessly to Chisgamble's data
+        this.loadProfileData();
+        this.showToast(`GitHub API rate limit reached. Reverted to @Chisgamble`, "info");
+      });
+  }
+
   updateUserDisplay() {
     const userDisplay = document.getElementById("current-user-display");
     if (userDisplay) userDisplay.textContent = `@${this.currentUsername}`;
-  }
-
-  showSkeletons() {
-    const reposGrid = document.getElementById("repos-grid");
-    if (!reposGrid) return;
-    reposGrid.innerHTML = `
-      <div class="repo-card-skeleton glass-panel">
-        <div class="skeleton-line title"></div>
-        <div class="skeleton-line desc"></div>
-        <div class="skeleton-line desc short"></div>
-        <div class="skeleton-footer"></div>
-      </div>
-      <div class="repo-card-skeleton glass-panel">
-        <div class="skeleton-line title"></div>
-        <div class="skeleton-line desc"></div>
-        <div class="skeleton-line desc short"></div>
-        <div class="skeleton-footer"></div>
-      </div>
-      <div class="repo-card-skeleton glass-panel">
-        <div class="skeleton-line title"></div>
-        <div class="skeleton-line desc"></div>
-        <div class="skeleton-line desc short"></div>
-        <div class="skeleton-footer"></div>
-      </div>
-    `;
   }
 
   // =====================================================================
   // RENDERING COMPONENTS
   // =====================================================================
   renderProfile() {
-    const u = this.userProfile;
-    if (!u) return;
+    const u = this.userProfile || CHISGAMBLE_PROFILE;
 
     // Avatar
     const avatar = document.getElementById("user-avatar");
-    if (avatar && u.avatar_url) avatar.src = u.avatar_url;
+    if (avatar) avatar.src = u.avatar_url;
 
     // Names & Titles
     const nameEl = document.getElementById("user-name");
@@ -536,45 +504,39 @@ class GitHubPortfolioApp {
     const brandName = document.getElementById("nav-brand-name");
     const footerBrand = document.getElementById("footer-brand-name");
 
-    const userGithubUrl = u.html_url || (this.config.socials && this.config.socials.github) || `https://github.com/${this.currentUsername}`;
+    const userGithubUrl = u.html_url || `https://github.com/${this.currentUsername}`;
+    const displayName = u.name || this.currentUsername;
 
-    const displayName = u.name || this.config.username || u.login;
     if (nameEl) nameEl.textContent = displayName;
     if (handleEl) {
       handleEl.textContent = `@${u.login || this.currentUsername}`;
       handleEl.href = userGithubUrl;
     }
     if (titleEl) {
-      titleEl.textContent = this.config.customTitle || "Software Engineer & Open Source Developer";
+      titleEl.textContent = this.config.customTitle || "Full-Stack Software Engineer & Microservices Developer";
     }
     if (bioEl) {
-      bioEl.textContent = u.bio || this.config.customBio || "Passionate engineer exploring cutting-edge technology and open-source software.";
+      bioEl.textContent = u.bio || this.config.customBio || "Full-Stack Engineer specialized in TypeScript, Spring Boot microservices, React, and modern web applications.";
     }
 
     if (brandName) {
-      brandName.innerHTML = `${displayName.split(' ')[0]}<span class="brand-accent">.dev</span>`;
+      brandName.innerHTML = `Chis<span class="brand-accent">.dev</span>`;
     }
     if (footerBrand) {
-      footerBrand.innerHTML = `${displayName.split(' ')[0]}<span class="brand-accent">.dev</span>`;
+      footerBrand.innerHTML = `Chis<span class="brand-accent">.dev</span>`;
     }
 
     // Meta elements
     const locEl = document.getElementById("meta-location");
-    const locWrap = document.getElementById("meta-location-wrap");
-    if (locEl && locWrap) {
-      locEl.textContent = u.location || "Remote / Earth";
-    }
+    if (locEl) locEl.textContent = u.location || "Vietnam / Remote";
 
     const compEl = document.getElementById("meta-company");
-    if (compEl) {
-      compEl.textContent = u.company || "Independent";
-    }
+    if (compEl) compEl.textContent = u.company || "Independent & Open Source";
 
     const blogEl = document.getElementById("meta-blog");
     if (blogEl) {
-      const blogUrl = u.blog ? (u.blog.startsWith("http") ? u.blog : `https://${u.blog}`) : userGithubUrl;
-      blogEl.href = blogUrl;
-      blogEl.textContent = u.blog ? u.blog.replace(/^https?:\/\//, '') : "github.com";
+      blogEl.href = userGithubUrl;
+      blogEl.textContent = "github.com/Chisgamble";
     }
 
     const followersEl = document.getElementById("meta-followers");
@@ -593,7 +555,7 @@ class GitHubPortfolioApp {
     // Status
     const statusText = document.getElementById("status-text-content");
     if (statusText && this.config.status) {
-      statusText.textContent = this.config.status.text || "Available for new projects";
+      statusText.textContent = this.config.status.text || "Open for Software Engineering & Full-Stack roles";
     }
 
     // Social modal links
@@ -620,33 +582,10 @@ class GitHubPortfolioApp {
     const repoEl = document.getElementById("stat-total-repos");
     const followerEl = document.getElementById("stat-followers-count");
 
-    if (starEl) this.animateCounter(starEl, totalStars);
-    if (forkEl) this.animateCounter(forkEl, totalForks);
-    if (repoEl) this.animateCounter(repoEl, this.repositories.length);
-    if (followerEl && this.userProfile) this.animateCounter(followerEl, this.userProfile.followers || 0);
-  }
-
-  animateCounter(element, target) {
-    let start = 0;
-    const duration = 800;
-    const steps = 24;
-    const increment = Math.ceil(target / steps);
-    const intervalTime = Math.floor(duration / steps);
-
-    if (target === 0) {
-      element.textContent = "0";
-      return;
-    }
-
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        element.textContent = target.toLocaleString();
-        clearInterval(timer);
-      } else {
-        element.textContent = start.toLocaleString();
-      }
-    }, intervalTime);
+    if (starEl) starEl.textContent = totalStars.toLocaleString();
+    if (forkEl) forkEl.textContent = totalForks.toLocaleString();
+    if (repoEl) repoEl.textContent = this.repositories.length.toLocaleString();
+    if (followerEl) followerEl.textContent = Number(this.userProfile.followers || 0).toLocaleString();
   }
 
   renderLanguagesBreakdown() {
@@ -669,16 +608,10 @@ class GitHubPortfolioApp {
     const totalLabel = document.getElementById("lang-repos-total");
 
     if (totalLabel) {
-      totalLabel.textContent = `${totalWithLanguage} public repositories analyzed`;
+      totalLabel.textContent = `${this.repositories.length} public repositories analyzed`;
     }
 
     if (!progressBar || !legendList) return;
-
-    if (sortedLangs.length === 0) {
-      progressBar.innerHTML = `<div class="progress-segment" style="width: 100%; background: var(--accent-primary);"></div>`;
-      legendList.innerHTML = `<span class="lang-legend-pill">Multi-disciplinary codebases</span>`;
-      return;
-    }
 
     let progressHtml = "";
     let legendHtml = "";
@@ -704,17 +637,8 @@ class GitHubPortfolioApp {
   }
 
   renderFeaturedRepo() {
-    let featured = null;
-
-    // Check if user set featured repos in config
-    if (this.config.featuredRepoNames && this.config.featuredRepoNames.length > 0) {
-      featured = this.repositories.find(r => this.config.featuredRepoNames.includes(r.name));
-    }
-
-    // Default to the highest starred repo
-    if (!featured && this.repositories.length > 0) {
-      featured = [...this.repositories].sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0))[0];
-    }
+    // Featured spotlight: prioritize bidzone (live deployment) or highest starred
+    const featured = this.repositories.find(r => r.name === "bidzone") || this.repositories[0];
 
     const titleEl = document.getElementById("featured-title");
     const descEl = document.getElementById("featured-desc");
@@ -725,21 +649,17 @@ class GitHubPortfolioApp {
     const topicsEl = document.getElementById("featured-topics");
     const linkEl = document.getElementById("featured-link");
 
-    if (!featured) {
-      if (titleEl) titleEl.textContent = "No public repository yet";
-      if (descEl) descEl.textContent = "Create repositories on GitHub to see them spotlighted here.";
-      return;
-    }
+    if (!featured) return;
 
     if (titleEl) {
       titleEl.textContent = featured.name;
       titleEl.href = featured.html_url;
     }
     if (descEl) {
-      descEl.textContent = featured.description || REPO_DESCRIPTIONS_MAP[featured.name] || "High-impact open source repository.";
+      descEl.textContent = featured.description;
     }
     if (langEl) {
-      langEl.textContent = featured.language || "Open Source";
+      langEl.textContent = featured.language || "Web App";
       const color = LANGUAGE_COLORS[featured.language];
       if (color) {
         langEl.style.borderColor = color;
@@ -755,11 +675,7 @@ class GitHubPortfolioApp {
     if (linkEl) linkEl.href = featured.html_url;
 
     if (topicsEl) {
-      const customTopics = REPO_TOPICS_MAP[featured.name];
-      const topics = (featured.topics && featured.topics.length > 0) 
-        ? featured.topics.slice(0, 4) 
-        : (customTopics || [featured.language || "developer", "open-source", "git"]);
-      topicsEl.innerHTML = topics.map(t => `<span class="topic-tag">#${t}</span>`).join("");
+      topicsEl.innerHTML = (featured.topics || []).slice(0, 4).map(t => `<span class="topic-tag">#${t}</span>`).join("");
     }
   }
 
@@ -772,7 +688,6 @@ class GitHubPortfolioApp {
     const totalCells = 140;
 
     for (let i = 0; i < totalCells; i++) {
-      // Create natural clusters of activity
       const seed = Math.sin(i * 13.5) * 10000;
       const rand = seed - Math.floor(seed);
       let level = 0;
@@ -782,7 +697,7 @@ class GitHubPortfolioApp {
       else if (rand > 0.45) level = 2;
       else if (rand > 0.25) level = 1;
       
-      cellsHtml += `<div class="heat-cell lvl-${level}" title="Activity Level ${level}"></div>`;
+      cellsHtml += `<div class="heat-cell lvl-${level}" title="Contribution Activity Level ${level}"></div>`;
     }
 
     grid.innerHTML = cellsHtml;
@@ -793,10 +708,10 @@ class GitHubPortfolioApp {
     if (!pillsWrap) return;
 
     const stack = this.config.techStack || {
-      frontend: ["TypeScript", "React", "Next.js", "TailwindCSS", "WebGL"],
-      backend: ["Node.js", "Python", "Go", "GraphQL", "PostgreSQL", "Redis"],
-      devops: ["Docker", "Kubernetes", "AWS", "GitHub Actions", "CI/CD"],
-      tools: ["Git", "VS Code", "Figma", "Postman", "Jest"]
+      frontend: ["TypeScript", "JavaScript", "React", "Next.js", "HTML5/CSS3", "TailwindCSS"],
+      backend: ["Java", "Spring Boot", "Spring Microservices", "C# / .NET", "Node.js", "Express.js"],
+      devops: ["Docker", "Git / GitHub", "Vercel", "CI/CD", "RESTful APIs", "SQL"],
+      tools: ["VS Code", "IntelliJ IDEA", "Postman", "Maven", "Gradle"]
     };
 
     let items = [];
@@ -822,11 +737,6 @@ class GitHubPortfolioApp {
 
     const experiences = this.config.experience || [];
 
-    if (experiences.length === 0) {
-      container.innerHTML = `<p style="color: var(--text-muted);">No journey timeline added yet in config.js.</p>`;
-      return;
-    }
-
     container.innerHTML = experiences.map(exp => `
       <div class="timeline-item">
         <div class="timeline-dot"></div>
@@ -846,7 +756,6 @@ class GitHubPortfolioApp {
     const pillsContainer = document.getElementById("language-filter-pills");
     if (!pillsContainer) return;
 
-    // Collect distinct languages from active repositories
     const langs = new Set();
     this.repositories.forEach(r => {
       if (r.language) langs.add(r.language);
@@ -862,7 +771,6 @@ class GitHubPortfolioApp {
 
     pillsContainer.innerHTML = html;
 
-    // Add click listeners to filter pills
     pillsContainer.querySelectorAll(".filter-pill").forEach(btn => {
       btn.addEventListener("click", () => {
         pillsContainer.querySelectorAll(".filter-pill").forEach(b => b.classList.remove("active"));
@@ -875,7 +783,7 @@ class GitHubPortfolioApp {
   }
 
   // =====================================================================
-  // REPOSITORY FILTERING & RENDERING
+  // REPOSITORY FILTERING & RENDERING (CLIENT-SIDE)
   // =====================================================================
   filterAndRenderRepos(append = false) {
     const reposGrid = document.getElementById("repos-grid");
@@ -884,10 +792,7 @@ class GitHubPortfolioApp {
 
     // 1. Filter
     this.filteredRepos = this.repositories.filter(repo => {
-      // Language filter
       const matchesLang = this.selectedLanguage === "all" || repo.language === this.selectedLanguage;
-      
-      // Search query
       const matchesSearch = !this.searchQuery || 
         repo.name.toLowerCase().includes(this.searchQuery) ||
         (repo.description && repo.description.toLowerCase().includes(this.searchQuery)) ||
@@ -909,7 +814,6 @@ class GitHubPortfolioApp {
     const totalVisible = this.currentPage * this.reposPerPage;
     const paginatedRepos = this.filteredRepos.slice(0, totalVisible);
 
-    // Render cards
     if (this.filteredRepos.length === 0) {
       reposGrid.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-secondary);">
@@ -927,14 +831,9 @@ class GitHubPortfolioApp {
 
     const cardsHtml = paginatedRepos.map(repo => {
       const color = LANGUAGE_COLORS[repo.language] || "#6366f1";
-      const customTopics = REPO_TOPICS_MAP[repo.name];
-      const topicsList = (repo.topics && repo.topics.length > 0)
-        ? repo.topics
-        : (customTopics || []);
-      const topicsHtml = topicsList.length > 0
-        ? topicsList.slice(0, 3).map(t => `<span class="topic-tag">#${t}</span>`).join("")
+      const topicsHtml = (repo.topics && repo.topics.length > 0)
+        ? repo.topics.slice(0, 3).map(t => `<span class="topic-tag">#${t}</span>`).join("")
         : "";
-      const repoDescription = repo.description || REPO_DESCRIPTIONS_MAP[repo.name] || "Open source software repository.";
 
       return `
         <div class="repo-card glass-panel">
@@ -950,7 +849,7 @@ class GitHubPortfolioApp {
               <span class="repo-badge-vis">Public</span>
             </div>
             
-            <p class="repo-desc">${repoDescription}</p>
+            <p class="repo-desc">${repo.description}</p>
 
             ${topicsHtml ? `<div class="repo-card-topics">${topicsHtml}</div>` : ''}
           </div>
@@ -984,7 +883,7 @@ class GitHubPortfolioApp {
 
             <div class="repo-card-actions">
               ${repo.homepage ? `
-                <a href="${repo.homepage.startsWith('http') ? repo.homepage : `https://${repo.homepage}`}" target="_blank" rel="noopener noreferrer" class="btn btn-xs btn-outline" title="Live Preview">
+                <a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="btn btn-xs btn-outline" title="Live Preview">
                   <span>Demo</span>
                 </a>
               ` : ''}
@@ -999,7 +898,6 @@ class GitHubPortfolioApp {
 
     reposGrid.innerHTML = cardsHtml;
 
-    // Toggle Load More button
     if (loadMoreBtn) {
       loadMoreBtn.style.display = totalVisible < this.filteredRepos.length ? "inline-flex" : "none";
     }

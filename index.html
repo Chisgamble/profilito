@@ -222,7 +222,7 @@
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                 </svg>
-                <span>Explore Repos (<span id="btn-repos-count">0</span>)</span>
+                <span>Explore Repos (<span id="btn-repos-count">11</span>)</span>
               </a>
 
               <button class="btn btn-glass" id="btn-share-profile" title="Copy profile URL">
@@ -276,7 +276,7 @@
                 <span class="stat-label">Total Forks</span>
                 <div class="stat-num-row">
                   <span class="stat-icon-fork">⑂</span>
-                  <span class="stat-number" id="stat-total-forks">0</span>
+                  <span class="stat-number" id="stat-total-forks">1</span>
                 </div>
                 <span class="stat-sub">Community extensions</span>
               </div>
@@ -284,7 +284,7 @@
                 <span class="stat-label">Public Repos</span>
                 <div class="stat-num-row">
                   <span class="stat-icon-repo">📦</span>
-                  <span class="stat-number" id="stat-total-repos">0</span>
+                  <span class="stat-number" id="stat-total-repos">11</span>
                 </div>
                 <span class="stat-sub">Open-source codebases</span>
               </div>
@@ -302,15 +302,21 @@
             <div class="languages-breakdown">
               <div class="breakdown-header">
                 <h4>Top Languages Breakdown</h4>
-                <span class="breakdown-total" id="lang-repos-total">Calculated from repositories</span>
+                <span class="breakdown-total" id="lang-repos-total">11 public repositories analyzed</span>
               </div>
               <div class="multi-progress-bar" id="languages-progress-bar">
-                <!-- Dynamic segmented progress bar -->
-                <div class="progress-segment" style="width: 100%; background: var(--accent-gradient);"></div>
+                <div class="progress-segment" style="width: 30%; background-color: #f1e05a;" title="JavaScript: 30%"></div>
+                <div class="progress-segment" style="width: 20%; background-color: #3178c6;" title="TypeScript: 20%"></div>
+                <div class="progress-segment" style="width: 20%; background-color: #b07219;" title="Java: 20%"></div>
+                <div class="progress-segment" style="width: 15%; background-color: #178600;" title="C#: 15%"></div>
+                <div class="progress-segment" style="width: 15%; background-color: #f34b7d;" title="C++: 15%"></div>
               </div>
               <div class="languages-legend" id="languages-legend-list">
-                <!-- Dynamic language pills -->
-                <span class="lang-legend-pill">Loading languages...</span>
+                <span class="lang-legend-pill"><span class="lang-dot" style="background-color: #f1e05a;"></span><strong>JavaScript</strong> <span>30%</span></span>
+                <span class="lang-legend-pill"><span class="lang-dot" style="background-color: #3178c6;"></span><strong>TypeScript</strong> <span>20%</span></span>
+                <span class="lang-legend-pill"><span class="lang-dot" style="background-color: #b07219;"></span><strong>Java</strong> <span>20%</span></span>
+                <span class="lang-legend-pill"><span class="lang-dot" style="background-color: #178600;"></span><strong>C#</strong> <span>15%</span></span>
+                <span class="lang-legend-pill"><span class="lang-dot" style="background-color: #f34b7d;"></span><strong>C++</strong> <span>15%</span></span>
               </div>
             </div>
           </div>
@@ -336,7 +342,6 @@
             <p class="bento-desc">Annual contribution consistency and recent commit velocity.</p>
 
             <div class="heatmap-container" id="heatmap-grid" aria-label="Contribution activity grid">
-              <!-- Dynamically populated 52-week or 20-week visual grid -->
             </div>
 
             <div class="heatmap-legend">
@@ -364,27 +369,30 @@
                 </div>
                 <h3>Star Spotlight</h3>
               </div>
-              <span class="pill-featured">TOP REPOSITORY</span>
+              <span class="pill-featured">FEATURED PROJECT</span>
             </div>
 
             <div class="featured-repo-content" id="featured-repo-content">
               <div class="featured-repo-name-row">
-                <a href="#" target="_blank" rel="noopener noreferrer" class="featured-repo-title" id="featured-title">Loading top project...</a>
-                <span class="featured-badge" id="featured-lang">Code</span>
+                <a href="https://github.com/Chisgamble/bidzone" target="_blank" rel="noopener noreferrer" class="featured-repo-title" id="featured-title">bidzone</a>
+                <span class="featured-badge" id="featured-lang" style="border-color: #f1e05a; color: #f1e05a;">JavaScript</span>
               </div>
               <p class="featured-repo-desc" id="featured-desc">
-                Analyzing repositories to highlight the most impactful project.
+                Real-time online auction & bidding web platform with live countdown and responsive interface. Deployed live on Vercel.
               </p>
               <div class="featured-topics" id="featured-topics">
-                <!-- Topics inserted dynamically -->
+                <span class="topic-tag">#javascript</span>
+                <span class="topic-tag">#auction</span>
+                <span class="topic-tag">#vercel</span>
+                <span class="topic-tag">#web-app</span>
               </div>
               <div class="featured-footer">
                 <div class="featured-stats">
                   <span>★ <strong id="featured-stars">0</strong></span>
                   <span>⑂ <strong id="featured-forks">0</strong></span>
-                  <span id="featured-updated">Updated recently</span>
+                  <span id="featured-updated">Live on Vercel</span>
                 </div>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xs" id="featured-link">
+                <a href="https://github.com/Chisgamble/bidzone" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xs" id="featured-link">
                   <span>View Code</span>
                   <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2">
                     <line x1="7" y1="17" x2="17" y2="7"></line>
