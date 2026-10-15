@@ -78,6 +78,140 @@ body[data-theme="amber"] {
   --accent-border: rgba(245, 158, 11, 0.4);
 }
 
+/* =====================================================================
+   LIGHT MODE DESIGN SYSTEM
+   High-contrast, crisp typography, frosted light glassmorphism
+   ===================================================================== */
+body[data-mode="light"] {
+  --bg-body: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.82);
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --bg-glass-nav: rgba(248, 250, 252, 0.88);
+  --bg-input: #ffffff;
+
+  --border-subtle: rgba(15, 23, 42, 0.09);
+  --border-hover: rgba(15, 23, 42, 0.2);
+  --border-focus: var(--accent-primary);
+
+  --text-main: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 10px 20px -3px rgba(15, 23, 42, 0.07);
+  --shadow-xl: 0 20px 30px -5px rgba(15, 23, 42, 0.1);
+  --shadow-glow: 0 0 25px var(--accent-glow);
+}
+
+/* Light mode component adaptations */
+body[data-mode="light"] html {
+  color-scheme: light;
+}
+
+body[data-mode="light"] .orb {
+  opacity: 0.12;
+}
+
+body[data-mode="light"] .spotlight {
+  opacity: 0.35;
+}
+
+body[data-mode="light"] .hero-bio,
+body[data-mode="light"] .featured-repo-desc,
+body[data-mode="light"] .timeline-desc {
+  color: #334155;
+}
+
+body[data-mode="light"] .topic-tag,
+body[data-mode="light"] .filter-pill,
+body[data-mode="light"] .stack-tab,
+body[data-mode="light"] .tech-skill-pill,
+body[data-mode="light"] .stat-counter-box,
+body[data-mode="light"] .switcher-btn,
+body[data-mode="light"] .icon-btn,
+body[data-mode="light"] .social-chip,
+body[data-mode="light"] .back-to-top-btn {
+  background: rgba(15, 23, 42, 0.04);
+  color: #334155;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+body[data-mode="light"] .filter-pill:hover,
+body[data-mode="light"] .stack-tab:hover,
+body[data-mode="light"] .tech-skill-pill:hover,
+body[data-mode="light"] .stat-counter-box:hover,
+body[data-mode="light"] .switcher-btn:hover,
+body[data-mode="light"] .icon-btn:hover,
+body[data-mode="light"] .social-chip:hover {
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+}
+
+body[data-mode="light"] .filter-pill.active,
+body[data-mode="light"] .stack-tab.active {
+  background: var(--accent-primary);
+  color: #ffffff;
+}
+
+body[data-mode="light"] .clock-display,
+body[data-mode="light"] .heatmap-container,
+body[data-mode="light"] .repo-search-input-wrap input,
+body[data-mode="light"] .glass-select,
+body[data-mode="light"] .form-group input,
+body[data-mode="light"] .form-group textarea,
+body[data-mode="light"] .input-group input {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+body[data-mode="light"] .glass-select option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+body[data-mode="light"] .modal-dialog,
+body[data-mode="light"] .switcher-dialog,
+body[data-mode="light"] .theme-menu {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+body[data-mode="light"] .toast {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+body[data-mode="light"] .heat-cell.lvl-0 { background: rgba(0, 0, 0, 0.06); }
+body[data-mode="light"] .scale-box.lvl-0 { background: rgba(0, 0, 0, 0.08); }
+
+body[data-mode="light"] .site-footer {
+  background: rgba(241, 245, 249, 0.85);
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+body[data-mode="light"] .divider span {
+  background: #ffffff;
+}
+
+/* Mode toggle button icons */
+.theme-icon-sun {
+  display: block;
+}
+.theme-icon-moon {
+  display: none;
+}
+
+body[data-mode="light"] .theme-icon-sun {
+  display: none;
+}
+body[data-mode="light"] .theme-icon-moon {
+  display: block;
+}
+
 /* Base Reset & Typography */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -89,6 +223,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   color-scheme: dark;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -99,6 +234,7 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {

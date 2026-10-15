@@ -190,7 +190,7 @@ class GitHubPortfolioApp {
     this.setupClock();
     this.setupEventListeners();
     this.renderExperienceTimeline();
-    this.renderTechStack("all");
+    this.renderTechStack("backend");
     this.generateContributionMatrix();
 
     // Instant local load - no API delays, no rate limits!
@@ -198,9 +198,25 @@ class GitHubPortfolioApp {
   }
 
   // =====================================================================
-  // THEME & SPOTLIGHT
+  // THEME & SPOTLIGHT (LIGHT / DARK MODE + ACCENT PALETTES)
   // =====================================================================
   setupTheme() {
+    // Mode (Light / Dark)
+    const savedMode = localStorage.getItem("dev_portfolio_mode") || "dark";
+    document.body.setAttribute("data-mode", savedMode);
+
+    const modeToggleBtn = document.getElementById("mode-toggle-btn");
+    if (modeToggleBtn) {
+      modeToggleBtn.addEventListener("click", () => {
+        const currentMode = document.body.getAttribute("data-mode") || "dark";
+        const newMode = currentMode === "light" ? "dark" : "light";
+        document.body.setAttribute("data-mode", newMode);
+        localStorage.setItem("dev_portfolio_mode", newMode);
+        this.showToast(`Switched to ${newMode === "light" ? "Light ☀️" : "Dark 🌙"} Mode`, "info");
+      });
+    }
+
+    // Color Accent Theme
     const savedTheme = localStorage.getItem("dev_portfolio_theme") || "violet";
     document.body.setAttribute("data-theme", savedTheme);
 
@@ -219,7 +235,7 @@ class GitHubPortfolioApp {
           document.body.setAttribute("data-theme", theme);
           localStorage.setItem("dev_portfolio_theme", theme);
           themeMenu.classList.remove("show");
-          this.showToast(`Switched to ${btn.textContent.trim()}`, "info");
+          this.showToast(`Switched accent to ${btn.textContent.trim()}`, "info");
         });
       });
 

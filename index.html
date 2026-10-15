@@ -61,6 +61,24 @@
           </button>
         </div>
 
+        <!-- Dark / Light Mode Switcher -->
+        <button class="icon-btn" id="mode-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Light and Dark Mode">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
         <!-- Theme Accent Switcher -->
         <div class="theme-dropdown">
           <button class="icon-btn" id="theme-btn" title="Change Theme Accent" aria-label="Change Color Theme">
@@ -142,7 +160,7 @@
         <!-- Status Indicator Pill -->
         <div class="status-badge" id="hero-status-badge">
           <span class="status-pulse"></span>
-          <span class="status-text" id="status-text-content">Available for new opportunities</span>
+          <span class="status-text" id="status-text-content">Open for Backend Engineer & Java Developer roles</span>
         </div>
 
         <div class="hero-profile-row">
@@ -166,11 +184,11 @@
             <div class="hero-handle-row">
               <a href="https://github.com/Chisgamble" target="_blank" rel="noopener noreferrer" class="hero-handle" id="user-handle">@Chisgamble</a>
               <span class="hero-dot">&bull;</span>
-              <span class="hero-role" id="user-title">Full-Stack Software Engineer</span>
+              <span class="hero-role" id="user-title">Backend Software Engineer & Java Specialist</span>
             </div>
             
             <p class="hero-bio" id="user-bio">
-              Full-Stack Engineer specialized in TypeScript, Spring Boot microservices, React, and modern web applications.
+              Backend Software Engineer specialized in Java, Spring Boot microservices, scalable RESTful APIs, and distributed systems architecture.
             </p>
 
             <!-- Meta tags (location, company, website, followers) -->
@@ -374,25 +392,25 @@
 
             <div class="featured-repo-content" id="featured-repo-content">
               <div class="featured-repo-name-row">
-                <a href="https://github.com/Chisgamble/bidzone" target="_blank" rel="noopener noreferrer" class="featured-repo-title" id="featured-title">bidzone</a>
-                <span class="featured-badge" id="featured-lang" style="border-color: #f1e05a; color: #f1e05a;">JavaScript</span>
+                <a href="https://github.com/Chisgamble/Spring-petclinic-microservices-clone" target="_blank" rel="noopener noreferrer" class="featured-repo-title" id="featured-title">Spring-petclinic-microservices-clone</a>
+                <span class="featured-badge" id="featured-lang" style="border-color: #b07219; color: #b07219;">Java</span>
               </div>
               <p class="featured-repo-desc" id="featured-desc">
-                Real-time online auction & bidding web platform with live countdown and responsive interface. Deployed live on Vercel.
+                Distributed cloud-native microservices architecture clone utilizing Spring Cloud, service discovery, centralized config, and Docker containers.
               </p>
               <div class="featured-topics" id="featured-topics">
-                <span class="topic-tag">#javascript</span>
-                <span class="topic-tag">#auction</span>
-                <span class="topic-tag">#vercel</span>
-                <span class="topic-tag">#web-app</span>
+                <span class="topic-tag">#java</span>
+                <span class="topic-tag">#microservices</span>
+                <span class="topic-tag">#spring-cloud</span>
+                <span class="topic-tag">#docker</span>
               </div>
               <div class="featured-footer">
                 <div class="featured-stats">
                   <span>★ <strong id="featured-stars">0</strong></span>
                   <span>⑂ <strong id="featured-forks">0</strong></span>
-                  <span id="featured-updated">Live on Vercel</span>
+                  <span id="featured-updated">Microservices</span>
                 </div>
-                <a href="https://github.com/Chisgamble/bidzone" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xs" id="featured-link">
+                <a href="https://github.com/Chisgamble/Spring-petclinic-microservices-clone" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xs" id="featured-link">
                   <span>View Code</span>
                   <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2">
                     <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -422,7 +440,7 @@
               <div class="time-meta" id="clock-zone">Local Time &bull; Active</div>
             </div>
             <p class="philosophy-quote" id="philosophy-text">
-              "First, solve the problem. Then, write the code."
+              "Robust architecture beats quick fixes. Scalability begins at the foundation."
             </p>
           </div>
 
@@ -438,14 +456,14 @@
                     <line x1="12" y1="17" x2="12" y2="21"></line>
                   </svg>
                 </div>
-                <h3>Core Technologies & Stack</h3>
+                <h3>Core Technologies & Backend Stack</h3>
               </div>
               <div class="stack-category-tabs" id="stack-tabs">
-                <button class="stack-tab active" data-category="all">All</button>
+                <button class="stack-tab active" data-category="backend">Backend & Java</button>
+                <button class="stack-tab" data-category="devops">DevOps & Cloud</button>
                 <button class="stack-tab" data-category="frontend">Frontend</button>
-                <button class="stack-tab" data-category="backend">Backend</button>
-                <button class="stack-tab" data-category="devops">DevOps/Cloud</button>
                 <button class="stack-tab" data-category="tools">Tools</button>
+                <button class="stack-tab" data-category="all">All Skills</button>
               </div>
             </div>
             

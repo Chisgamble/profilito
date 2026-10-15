@@ -1,21 +1,22 @@
 // =====================================================================
-// GITHUB PORTFOLIO CONFIGURATION - TRẦN KHÔN CHÍ (Chisgamble)
+// GITHUB PORTFOLIO CONFIGURATION - TRẦN KHÔN CHÍ (@Chisgamble)
+// Backend & Java Software Engineering Focus
 // =====================================================================
 
 const PORTFOLIO_CONFIG = {
-  // Your default GitHub username (live data will be fetched for this user)
+  // Default GitHub username
   username: "Chisgamble",
   
-  // Custom header tagline / title displayed under your name
-  customTitle: "Full-Stack Software Engineer & Microservices Developer",
+  // Custom header tagline / title
+  customTitle: "Backend Software Engineer & Java / Spring Specialist",
   
-  // Custom headline/intro
-  customBio: "Full-Stack Engineer specialized in TypeScript, Spring Boot microservices, React, and modern web applications. Passionate about building robust systems, interactive digital platforms, and scalable architecture.",
+  // Custom headline / bio highlighting Backend & Java strengths
+  customBio: "Backend Software Engineer specialized in Java, Spring Boot microservices, scalable RESTful APIs, and distributed architecture. Experienced with cloud-native patterns, relational databases, Docker, and full-stack integration.",
   
-  // Your current status / availability
+  // Current status & availability
   status: {
     available: true,
-    text: "Open for Software Engineering & Full-Stack roles",
+    text: "Open for Backend Engineer & Java Developer roles",
     location: "Vietnam / Remote"
   },
   
@@ -28,38 +29,72 @@ const PORTFOLIO_CONFIG = {
     website: "https://github.com/Chisgamble"
   },
   
-  // Skills categorized for the Tech Stack Bento Card
+  // Skills categorized - Backend first
   techStack: {
-    frontend: ["TypeScript", "JavaScript", "React", "Next.js", "HTML5/CSS3", "TailwindCSS"],
-    backend: ["Java", "Spring Boot", "Spring Microservices", "C# / .NET", "Node.js", "Express.js"],
-    devops: ["Docker", "Git / GitHub", "Vercel", "CI/CD", "RESTful APIs", "SQL"],
-    tools: ["VS Code", "IntelliJ IDEA", "Postman", "Maven", "Gradle"]
+    backend: [
+      "Java", 
+      "Spring Boot", 
+      "Spring Cloud (Microservices)", 
+      "C# / .NET", 
+      "RESTful APIs", 
+      "SQL / Relational DBs", 
+      "Node.js & Express", 
+      "C / C++ (Systems)"
+    ],
+    devops: [
+      "Docker & Containers", 
+      "Maven & Gradle", 
+      "Git & GitHub Actions", 
+      "Linux / Bash", 
+      "CI/CD Pipelines", 
+      "Cloud Deployment (Vercel)"
+    ],
+    frontend: [
+      "TypeScript", 
+      "JavaScript (ES6+)", 
+      "React", 
+      "HTML5 & CSS3", 
+      "TailwindCSS"
+    ],
+    tools: [
+      "IntelliJ IDEA", 
+      "Postman", 
+      "VS Code", 
+      "Git Bash", 
+      "DBeaver / DataGrip"
+    ]
   },
 
-  // Experience & Project highlights
+  // Experience highlights tailored to Backend & Java
   experience: [
     {
-      role: "Full-Stack Developer",
-      company: "Independent & Open Source Projects",
-      period: "2023 — Present",
-      description: "Architected and delivered multiple end-to-end full stack web platforms including BidZone (real-time auction platform deployed on Vercel), TroUyTin (rental accommodation platform in TypeScript), and Chis-Inven."
-    },
-    {
       role: "Backend & Microservices Engineer",
-      company: "Spring & Java Ecosystem",
-      period: "2024 — 2026",
-      description: "Engineered distributed microservices with Spring Boot and Spring Cloud, implemented real-time chat architecture in ChatBoxApp, and built robust API integrations."
+      company: "Distributed Systems & Cloud-Native Projects",
+      period: "2024 — Present",
+      description: "Engineered distributed microservice architectures using Spring Boot and Spring Cloud (Spring PetClinic clone), integrating service discovery, centralized configuration, resilient API gateways, and Docker containerization."
     },
     {
-      role: "Software Engineering & Game Development",
-      company: "Core Systems & Algorithms",
+      role: "Java Backend Developer",
+      company: "Real-Time Messaging Systems",
       period: "2023 — 2024",
-      description: "Designed core game mechanics and object-oriented simulation in C++ (Pokemon), alongside .NET / C# enterprise commerce applications (DominiShop)."
+      description: "Architected ChatBoxApp with Java and Spring Boot, implementing real-time WebSocket communication, secure authentication, multi-threaded request handling, and clean layered service architecture."
+    },
+    {
+      role: "Systems & Full-Stack Developer",
+      company: "Independent Software Engineering",
+      period: "2023 — 2024",
+      description: "Developed enterprise commerce backend in C# (.NET DominiShop), explored operating system kernel internals in C (MIT xv6 OS lab), and built real-time web platforms including BidZone and TroUyTin."
     }
   ],
 
-  // Featured repositories to prioritize
-  featuredRepoNames: ["bidzone", "TroUyTin", "Chis-Inven", "ChatBoxApp_Java_Springboot", "Spring-petclinic-microservices-clone"],
+  // Featured repositories to spotlight (Spring & Java first!)
+  featuredRepoNames: [
+    "Spring-petclinic-microservices-clone",
+    "ChatBoxApp_Java_Springboot",
+    "DominiShop",
+    "Chis-Inven",
+    "bidzone"
+  ],
 
   // Resume download link
   resumeUrl: "#"
